@@ -1,4 +1,22 @@
 import streamlit as st
+
+# אופציות סינון נוספות (פילטרים)
+def sidebar_filters(df):
+    st.sidebar.header("אפשרויות סינון נוספות")
+    # טווח גילאים
+    age_min, age_max = int(df['Age'].min()), int(df['Age'].max())
+    age_range = st.sidebar.slider("טווח גילאים", min_value=age_min, max_value=age_max, value=(age_min, age_max))
+
+    # נמלי עלייה לאונייה
+    embark_options = df['Embarked'].dropna().unique().tolist()
+    embarked = st.sidebar.multiselect("נמל עליית נוסע", options=embark_options, default=embark_options)
+
+    # שרידות
+    survived_option = st.sidebar.selectbox(
+        "הצג נוסעים ששרדו / לא שרדו / כולם",
+        options=["כולם", "שרדו", "לא שרדו"]
+    )
+    return age_range, embarked, survived_option
 import pandas as pd
 import plotly.express as px
 
