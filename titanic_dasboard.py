@@ -27,7 +27,7 @@ def load_data():
     return pd.read_csv(url)
 
 df = load_data()
-
+print('hi'')
 st.title("דאשבורד אנליזת הנוסעים של הטיטאניק 🚢")
 st.markdown(
     """
